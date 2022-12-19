@@ -57,19 +57,19 @@ resources:
 #- argocd/instances/cp4d-pattern-healthcare.yaml
 
 ## Cloud Pak for Security
-#- argocd/operators/ibm-cp4s-operator.yaml
-#- argocd/instances/ibm-cp4sthreatmanagements-instance.yaml
+- argocd/operators/ibm-cp4s-operator.yaml
+- argocd/instances/ibm-cp4sthreatmanagements-instance.yaml
 
 ## IBM Foundational Services / Common Services
-#- argocd/operators/ibm-foundations.yaml
-#- argocd/instances/ibm-foundational-services-instance.yaml
-#- argocd/operators/ibm-automation-foundation-core-operator.yaml
+- argocd/operators/ibm-foundations.yaml
+- argocd/instances/ibm-foundational-services-instance.yaml
+- argocd/operators/ibm-automation-foundation-core-operator.yaml
 #- argocd/operators/ibm-automation-foundation-operator.yaml
 #- argocd/operators/ibm-license-service-operator.yaml
 #- argocd/instances/ibm-license-service-instance.yaml
 
 ## IBM Catalogs
-#- argocd/operators/ibm-catalogs.yaml
+- argocd/operators/ibm-catalogs.yaml
 
 # PAW
 #- argocd/instances/ibm-paw.yaml
@@ -123,8 +123,8 @@ resources:
 #- argocd/operators/openshift-pipelines.yaml
 
 # Serverless
-#- argocd/operators/openshift-serverless.yaml
-#- argocd/instances/openshift-serverless-knative-serving-instance.yaml
+- argocd/operators/openshift-serverless.yaml
+- argocd/instances/openshift-serverless-knative-serving-instance.yaml
 
 # Service Mesh
 #- argocd/operators/elasticsearch.yaml
@@ -184,3 +184,11 @@ patches:
       value:
         name: spec.channel
         value: v1.1
+- target:
+    name: ibm-cp4s-operator
+  patch: |-
+    - op: replace
+      path: /spec/source/helm/parameters/1
+      value:
+        name: spec.channel
+        value: v1.10
